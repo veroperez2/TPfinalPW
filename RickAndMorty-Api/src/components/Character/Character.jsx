@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useCharacter } from "../../hooks/useCharacter";
 
 export function Character() {
-  const [character, setCharacter] = useState([]);
+  const [getAllCharacter, character] = useCharacter([]);
 
   useEffect(() => {
-    fetch("https://rickandmortyapi.com/api/character")
-      .then((reponse) => reponse.json())
-      .then((data) => setCharacter(data.results));
+    getAllCharacter();
   }, []);
 
   return (
     <ul>
-      {character.map((item, index) => (
+      {allCharacter.map((item, index) => (
         <li key={index}>
           <h3>{item.name}</h3>
           <p>{item.status}</p>
